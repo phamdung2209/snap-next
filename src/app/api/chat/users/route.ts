@@ -8,9 +8,14 @@ export const GET = async () => {
         if (!session) return
         const users: IUserDocument[] = await User.find()
 
-        return NextResponse.json(
-            users.filter((user) => user._id.toString() !== session?.user?._id.toString()),
+        // Filter the authenticated user from the list
+        // return NextResponse.json(
+        //     users.filter((user) => user._id.toString() !== session?.user?._id.toString()),
+        // )
+        const filteredUsers = users.filter(
+            (user) => user._id.toString() !== session.user._id.toString(),
         )
+        return NextResponse.json(filteredUsers)
     } catch (error) {
         console.log('Error in GET /api/chat/users', error)
         throw error

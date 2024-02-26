@@ -3,8 +3,11 @@ import Link from 'next/link'
 import { Button } from '~/components/ui/button'
 import { Logo } from '~/assets/icons'
 import BtnLogout from './logout-button'
+import { auth } from '~/auth'
 
 const Navbar = async () => {
+    const session = await auth()
+
     return (
         <header className="w-full py-4 px-8 flex justify-between items-center">
             <Link href="/">
@@ -22,11 +25,16 @@ const Navbar = async () => {
                     Watch tutorial
                 </Button>
 
-                <Button asChild className="bg-black text-white rounded-full p-3 text-xs md:text-sm">
-                    <Link href={'/login'}>Login</Link>
-                </Button>
-
-                <BtnLogout />
+                {session ? (
+                    <BtnLogout />
+                ) : (
+                    <Button
+                        asChild
+                        className="bg-black text-white rounded-full p-3 text-xs md:text-sm"
+                    >
+                        <Link href={'/login'}>Login</Link>
+                    </Button>
+                )}
             </div>
         </header>
     )
