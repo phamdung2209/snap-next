@@ -52,6 +52,9 @@ const config = {
                     DEFAULT: 'hsl(var(--card))',
                     foreground: 'hsl(var(--card-foreground))',
                 },
+                sigColorBgBorder: 'rgba(255,255,255,0.1)',
+                sigSnapChat: '#0fadff',
+                sigSnapImg: '#f23c57',
             },
             borderRadius: {
                 lg: 'var(--radius)',

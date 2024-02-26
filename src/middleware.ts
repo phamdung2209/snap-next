@@ -11,7 +11,9 @@ export default NextAuth({
             const user = auth?.user
 
             const isChatPage = request.nextUrl.pathname.startsWith('/chat')
-            const isAUthPage = request.nextUrl.pathname.startsWith('/login')
+            const isAUthPage =
+                request.nextUrl.pathname.startsWith('/login') ||
+                request.nextUrl.pathname.startsWith('/signup')
 
             if (!user && isChatPage) {
                 return false
