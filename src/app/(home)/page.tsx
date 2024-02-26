@@ -16,9 +16,11 @@ export default async function Home() {
 
                 <main className="flex flex-1 flex-col md:flex-row items-center justify-center px-8 mt-4">
                     <div className="flex-1 md:text-left text-center h-full">
-                        <h1 className="text-4xl md:text-6xl font-bold">SnapNext 4 programmers!</h1>
+                        <h1 className="text-4xl md:text-6xl font-bold">
+                            Snapchat is now on the web!
+                        </h1>
                         <p className="mt-4 text-xl font-semibold">
-                            Share your code with your friends to get feedback and improve your code.
+                            Chat, Snap, and video call your friends from wherever you are.
                         </p>
                         <div className="mt-4">
                             <p className="mt-2 text-lg font-semibold">What are you waiting for?</p>
