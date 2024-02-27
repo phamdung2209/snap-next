@@ -81,7 +81,7 @@ const ChatMessages = ({ messages, session }: ChatMessagesProps) => {
         <>
             {messages.map((message, idx) => {
                 const amISender = message.sender._id === session?.user?._id
-                const senderFullName = message.sender.fullname
+                const senderFullName = message.sender.fullname ?? message.sender.username
                 const isMessageImage = message.messageType === 'image'
                 const isPrevMessageFromSameSender =
                     idx > 0 && messages[idx - 1].sender._id === message.sender._id

@@ -67,7 +67,7 @@ export const getMessages = async (authUserId: string, otherUserId: string) => {
             populate: {
                 path: 'sender',
                 model: 'User',
-                select: 'fullname',
+                select: 'fullname username',
             },
         })
 
