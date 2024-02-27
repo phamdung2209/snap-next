@@ -105,9 +105,9 @@ export const deleteChatAction = async (userId: string) => {
         await Chat.deleteOne({ _id: chat._id })
 
         revalidatePath('/chat/[id]', 'page')
-        redirect('/chat')
     } catch (error: any) {
         console.log('Error in deleteChatAction (actions.ts): ', error.message)
         throw error
     }
+    redirect('/chat')
 }
