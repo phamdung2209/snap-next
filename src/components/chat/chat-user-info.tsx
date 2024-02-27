@@ -3,7 +3,7 @@ import { Avatar, AvatarImage } from '../ui/avatar'
 import { IUserDocument } from '~/models/user.model'
 
 const ChatUserInfo = ({ userData }: { userData: IUserDocument }) => {
-    const { fullname: userFullName, avatar: userAvatar } = userData
+    const { fullname: userFullName, avatar: userAvatar, username } = userData
 
     return (
         <div className="cursor-pointer bg-sigButtonSecondary hover:bg-sigButtonSecondaryHover rounded-full flex gap-2 items-center py-1 px-3 text-white font-semibold">
@@ -11,7 +11,7 @@ const ChatUserInfo = ({ userData }: { userData: IUserDocument }) => {
                 {userAvatar ? <AvatarImage src={userAvatar} /> : <Logo />}
             </Avatar>
 
-            <span>{userFullName}</span>
+            <span>{userFullName ?? username}</span>
         </div>
     )
 }
