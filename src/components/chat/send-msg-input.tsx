@@ -4,11 +4,12 @@ import { Button } from '../ui/button'
 import { Camera, TextMessageSent } from '~/assets/icons'
 import { Input } from '../ui/input'
 import { EmojiPopover } from './emoji-popover'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { sendMessageAction } from '~/lib/actions'
 import { useParams } from 'next/navigation'
 import { MESSAGE_TYPES, readFileAsDataURL } from '~/lib/utils'
 import { Loader2 } from 'lucide-react'
+import { io } from 'socket.io-client'
 
 const SendMsgInput = () => {
     const [msg, setMsg] = useState('')
@@ -23,6 +24,7 @@ const SendMsgInput = () => {
         setLoading(true)
         try {
             const res = await sendMessageAction(receiverId, msg, MESSAGE_TYPES.TEXT)
+
             setMsg('')
         } catch (error: any) {
             console.log('Error in handleSendMsg (send-msg-input.tsx): ', error.message)

@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import ChatCamera from '~/components/chat/chat-camera'
 
-export default async function ChatRootPage() {
+export default function ChatRootPage() {
     // const res = await fetch('https://worldtimeapi.org/api/timezone/Europe/London', {
     //     cache: 'no-cache',
     // })

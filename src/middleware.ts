@@ -1,5 +1,5 @@
 import NextAuth, { Session } from 'next-auth'
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export default NextAuth({
     pages: {

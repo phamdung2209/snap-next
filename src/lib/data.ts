@@ -2,6 +2,8 @@ import { auth } from '~/auth'
 import Chat, { IChat, IChatDocument } from '~/models/chat.model'
 import Message, { IMessageDocument } from '~/models/messages.model'
 import User, { IUserDocument } from '~/models/user.model'
+import { pusherClient } from './pusher'
+import { io } from 'socket.io-client'
 
 export const getUsersForSidebar = async (authUserId: string) => {
     try {
@@ -60,7 +62,7 @@ export const getUserProfile = async (userId: string) => {
 
 export const getMessages = async (authUserId: string, otherUserId: string) => {
     try {
-        const chat: IChatDocument | null = await Chat.findOne({
+        let chat: IChatDocument | null = await Chat.findOne({
             participants: { $all: [authUserId, otherUserId] },
         }).populate({
             path: 'messages',
@@ -72,6 +74,12 @@ export const getMessages = async (authUserId: string, otherUserId: string) => {
         })
 
         if (!chat) return []
+
+        // SOCKET.IO IMPLEMENTATION HERE
+        // await fetch('/api/socket')
+        const socket = io('http://localhost:8080')
+        socket.emit('newMessage', chat.messages)
+        // console.log('socket: ', socket)
 
         return JSON.parse(JSON.stringify(chat.messages))
     } catch (error) {

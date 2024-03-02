@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-import { previewImg, readFileAsDataURL } from '~/lib/utils'
+import { previewImg } from '~/lib/utils'
 import { Camera } from '~/assets/icons'
 import ImagePreviewDialog from './image-preview-dialog'
 import SelectUserDialog from './select-user-dialog'

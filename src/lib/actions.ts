@@ -6,7 +6,6 @@ import { v2 as cloudinary } from 'cloudinary'
 import Message, { IMessageDocument } from '~/models/messages.model'
 import Chat, { IChatDocument } from '~/models/chat.model'
 import { revalidatePath, unstable_noStore as noStore } from 'next/cache'
-import path from 'path'
 import { redirect } from 'next/navigation'
 
 cloudinary.config({
@@ -78,6 +77,9 @@ export const sendMessageAction = async (
             chat.messages.push(newMessage._id)
             await chat.save()
         }
+
+        // SOCKET.IO GO HERE
+        // io.emit('newMessage', newMessage)
 
         // REVALIDATE PATH TO GET NEW MESSAGE
         revalidatePath(`/chat/${receiverId}`)
